@@ -12,8 +12,8 @@ public class AppTest {
     @Test
     void testSimpleIncrement() {
         GroceryCounter counter = new GroceryCounter();
-        counter.ones();       // +$1.00
-        counter.tenths();     // +$0.10
+        counter.ones(); // +$1.00
+        counter.tenths(); // +$0.10
         assertEquals("$1.10", counter.total());
     }
 
