@@ -4,11 +4,35 @@
 package org.example;
 
 public class App {
-    public String getGreeting() {
-        return "Hello World!";
-    }
-
     public static void main(String[] args) {
-        System.out.println(new App().getGreeting());
+        GroceryCounter counter = new GroceryCounter();
+
+        System.out.println("Initial: " + counter.total()); // $0.00
+
+        counter.tens();       // +$10.00
+        counter.tens();       // +$10.00
+        counter.tenths();     // +$0.10
+        counter.hundredths(); // +$0.01
+
+        System.out.println("After increments: " + counter.total()); // $20.11
+        System.out.println("Overflows: " + counter.overflows());    // 0
+
+        for (int i = 0; i < 35; i++) {
+            counter.ones(); // +$1.00 x 35 = $35.00
+        }
+
+        System.out.println("After adding $35: " + counter.total());
+        System.out.println("Overflows: " + counter.overflows());
+
+        for (int i = 0; i < 100; i++) {
+            counter.hundredths(); // +$0.01 x 100 = $1.00
+        }
+
+        System.out.println("After 100 x $0.01: " + counter.total());
+        System.out.println("Overflows: " + counter.overflows());
+
+        counter.clear();
+        System.out.println("After clear: " + counter.total());      // $0.00
+        System.out.println("Overflows: " + counter.overflows());    // 0
     }
 }
